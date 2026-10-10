@@ -4,7 +4,7 @@ This project is a scoring webapp and database for a university archery club
 
 Usage context:
 - The webapp will be primarily used by college students on varying mobile devices. Therefore, it needs work on all common mobile operating systems, browsers, and screen sizes
-- The webapp will likely be used outdoors in conditions where the cellular connection is not super fast/reliable. Therefore, the pages must be lightweight, caching must be used whenever possible, and communication with the server must have generous retries.
+- The webapp will likely be used outdoors in conditions where the cellular connection is not super fast/reliable. Therefore, the pages must be lightweight, caching must be used whenever possible, and communication with the server must be efficient + generous retries
 - The webapp will be used to enter raw arrow scores during competitions. Therefore, it must be very intuitive and easy to use to avoid disrupting competitions.
 
 Competition context:
@@ -20,7 +20,6 @@ Security context:
 
 Admin context:
 - The app will have an admin page only accessible to club officers (likely via a separate secret password). Admins should be assumed to be non-technical with no access to or understanding of the codebase. Therefore, everything they would reasonably want to change (security settings, competition variables, approved users, etc) needs be configurable via intuitive UI
-- Admin page should be both mobile-friendly and desktop-friendly
 
-Architecture Context
+Architecture & tech stack context
 - TODO: will fill in once we decide what DB were using and things like that
