@@ -22,4 +22,5 @@ Admin context:
 - The app will have an admin page only accessible to club officers (likely via a separate secret password). Admins should be assumed to be non-technical with no access to or understanding of the codebase. Therefore, everything they would reasonably want to change (security settings, competition variables, approved users, etc) needs be configurable via intuitive UI
 - Admin page should be both mobile-friendly and desktop-friendly
 
-
+Architecture Context
+- TODO: will fill in once we decide what DB were using and things like that
