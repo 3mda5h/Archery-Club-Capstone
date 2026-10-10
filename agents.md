@@ -1,22 +1,25 @@
 # Archery Club Capstone Project Context
 
-This project is a scoring webapp and database for a university archery club. 
+This project is a scoring webapp and database for a university archery club
 
-## Project objectives:
-### Front end:
-- A public, very mobile-friendly web UI where users can select a competition/event, enter their raw arrow scores and submit to the database, view their past scores and their running average, and view their place in a club-wide leaderboard for each competition
-  - These pages will be publicly available and require no individual login (no account) to reduce friction for users. However, there will be a reasonably secure system so that only Archery Club members can submit their scores to the database. Likely a password told to members at practice + rate-limiting to prevent brute-force + only allowing submissions during club practice hours + avoid page showing up on Google.
-  - Ideally, the scoring page should support double-scoring, where each archer can (optionally) be scored by two other archers to avoid mistakes or cheating. In this case the UI should easily allow for switching between multiple scorecards.
-Pages should also use browser caching to save scores and other user-selected data in case internet connection is lost or page is accidentally reloaded. User's name should be stored long-term as well so they don't have to re-select it every time
-  - Pages should also be lightweight and be able load reasonably quickly when internet connection isn't great.
-- An admin page only accessible to club officers that will allow for addition and bulk removal of members, editing scores after they are submitted in case of error, changing the score-submission/admin password + managing other security features, and any other configurations needed
-Accessible via a password known only by club officers, protected by rate limiting
- 
-### Back end:
-- Server-side logic for team-making, competition-specific scoring, leaderboards, averages, pin achievements, etc
-- A database backend that maps members to their scorecards for all events they have participated in
+Usage context:
+- The webapp will be primarily used by college students on varying mobile devices. Therefore, it needs work on all common mobile operating systems, browsers, and screen sizes
+- The webapp will likely be used outdoors in conditions where the cellular connection is not super fast/reliable. Therefore, the pages must be lightweight, caching must be used whenever possible, and communication with the server must have generous retries.
+- The webapp will be used to enter raw arrow scores during competitions. Therefore, it must be very intuitive and easy to use to avoid disrupting competitions.
 
-### General goals:
-- Needs to be highly configurable via UI, allowing future archery club officers with no technical knowledge to change things to fit with current competition rules/conditions
-- Needs to be hosted somewhere STABLE and CHEAP so future club officers can continue to use it. (AWS? maybe OSU can host?)
+Competition context:
+- There are multiple types of competitions and most of them are long term/cumulative
+- Submitted scores need to be tracked per-user so the user's average can be calculated and so they can look back on their history of scorecards
+- There will be public leaderboards for each competition
+
+Security context:
+- The web app does NOT have individual user accounts to reduce friction. Instead, users select their name from a drop down of known approved users, and submit their scores using a password told to them at practice.
+- All password checking needs to be IP rate-limited to avoid bot bruteforce 
+- Submission to the database should also only be allowed during specific hours on specific days (during practice)
+- The website is intended to be internal to the club and will not show up in search engines. Club members will be told the url. 
+
+Admin context:
+- The app will have an admin page only accessible to club officers (likely via a separate secret password). Admins should be assumed to be non-technical with no access to or understanding of the codebase. Therefore, everything they would reasonably want to change (security settings, competition variables, approved users, etc) needs be configurable via intuitive UI
+- Admin page should be both mobile-friendly and desktop-friendly
+
 
