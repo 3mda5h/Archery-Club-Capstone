@@ -59,6 +59,8 @@ Specify what must be updated (README, docs/, API refs, CHANGELOG) and docstring/
 Describe versioning scheme, tagging, changelog generation, packaging/publishing steps, and rollback process.
 
 ## Support & Contact
-
-Provide maintainer contact channel, expected response windows, and where to ask questions.
+- The primary maintainer is 3mda5h
+- If you have questions about the code, open a Github discussion 
+- For bugs and feature requests, open an issue
+- If you have questions about the OSU Archery Club, contact us at archery@oregonstate.edu
 
