@@ -37,7 +37,7 @@ We will bring concerns to the Project Manager first. If a concern seems like add
 
 - All configuration and credentials live in a local `.env` file. It is listed in `.gitignore` and must never be committed.
 - `.env.example` lists every variable the app needs, with placeholder values only. Update it whenever you add a variable
-- Real credentials are shared through a private channel agreed on by the team, never in teh public repo, never in the todo Discord channel, and never pasted into any AI tool.
+- Real credentials are shared through a private channel agreed on by the team, never in the public repo, never in the todo Discord channel, and never pasted into any AI tool.
 
 ### Run Locally
 
@@ -208,7 +208,7 @@ The Quality Owner owns this table and keeps the status column current. Any check
 
 ### Merging
 
-- At least one approval from someone other than the author, all required status checks gre, all conversations resolved.
+- At least one approval from someone other than the author, all required status checks green, all conversations resolved.
 - The author squash-merges and deletes the branch.
 
 ---
