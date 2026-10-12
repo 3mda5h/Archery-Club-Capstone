@@ -151,6 +151,22 @@ Do not disable lint rules inline without a comment explaining why.
 
 *List the checks a change must pass before it merges (tests, review, docs updated, lint and security checks), each with the CI job, hook, or test that enforces it. For a gate not built yet, name the sprint it lands in and its owner.*
 
+A change merges only when every check below passes.
+
+| Check | Enforced by | Status |
+|---|---|---|
+| All tests pass | CI job `test` | TODO : confirm built (owner: Quality Owner) |
+| Lint and formatting are clean | Pre-commit hook and CI job `lint` | TODO : confirm built (owner: Quality Owner) |
+| Project builds successfully | CI job `build` | TODO : confirm built (owner: Quality Owner) |
+| At least one approval from someone other than the author | Branch protection on `main` | TODO : confirm enabled (owner: PM) |
+| All PR conversations resolved | Branch protection on `main` | TODO : confirm enabled (owner: PM) |
+| No secrets committed | CI secret scan job (TODO : tool) | Lands in Sprint TODO, owner: Quality Owner |
+| No known vulnerable dependencies | CI dependency scan job (TODO : tool) | Lands in Sprint TODO, owner: Quality Owner |
+| Docs updated (README, `docs/`, `agents.md`, API reference, CHANGELOG) when behavior, setup, or architecture changes | PR template checklist, verified by the reviewer | Active now |
+| Author and reviewer have read and understand all of the code | PR template checklist | Active now |
+
+The Quality Owner owns this table and keeps the status column current. Any check that is not built yet must have a sprint number and an owner.
+
 ---
 
 ## Contribution Norm
@@ -158,6 +174,18 @@ Do not disable lint rules inline without a comment explaining why.
 *State the floor (every contributor lands at least one piece of accepted work per sprint), where each kind of work lives (the repository, the issue tracker, the partner's system), and what accepted means for each.*
 
 **The floor:** every contributor lands at least one piece of accepted work per sprint.
+
+**Where work lives and what "accepted" means:**
+
+| Kind of work | Where it lives | What "accepted" means |
+|---|---|---|
+| Code, tests, and documentation | The repository | A merged PR that meets the Definition of Done |
+| Planning, research, design, and triage | The issue tracker and project board | A closed issue, or a linked note with the deliverable attached, acknowledged by the PM |
+| Partner work (demos, requirements, feedback from the OSU Archery Club) | The partner's system or our shared partner channel | The partner has seen or responded to it, and the PM has logged the response on the board |
+
+- Reviewing other people's PRs is expected, but it supplements the floor rather than replacing it.
+- If you can't meet the floor in a sprint (illness, exams, work), say so in Discord before the sprint ends so the team can adjust.
+- The PM records each sprint's accepted work in the sprint note.
 
 ---
 
