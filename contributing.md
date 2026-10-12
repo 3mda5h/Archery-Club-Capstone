@@ -55,10 +55,10 @@ We will bring concerns to the Project Manager first. If a concern seems like add
 *Describe the workflow (e.g., trunk-based or GitFlow), default branch, branch naming, and when to rebase vs. merge.*
 
 - **Model:** trunk-based development. `main` is the default branch, is protected, and must always be demo-ready
-- **Branch Names:** `type/issue-number-short-description`, using the same types as commit messages (e.g. `docs/61-update-readme`).
-- **Branch life:** keep branches short-lived (days, not weeks) and small enough to review comfortably.
+- **Branch Names:** `initials/issue-number-short-description`. Example `em/22-fix-scoring-ui`
+- **Branch life:** keep branches reasonably short-lived, ideally no longer than a week
 - **Rebase vs. Merge:** Rebase your branch onto the latest `main` before opening a PR and again if `main` moves while your PR is open. Never rebase a branch someone else is working on. PRs are squash-merged (all the individual commits from a feature or topic branch into a single, brand-new commit on your target branch) into `main`, so history stays one commit per change.
-- **No direct pushes to `main`.** Every change goes through a PR.
+- **No direct pushes to `main`.**, unless you are changing something incredibly simple such as adding content to the readme or fixing a typo. Any other even mildly significant change goes through a PR.
 
 ---
 
