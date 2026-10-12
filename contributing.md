@@ -58,7 +58,7 @@ We will bring concerns to the Project Manager first. If a concern seems like add
 - **Branch Names:** `initials/issue-number-short-description`. Example `em/22-fix-scoring-ui`
 - **Branch life:** keep branches reasonably short-lived, ideally no longer than a week
 - **Rebase vs. Merge:** Rebase your branch onto the latest `main` before opening a PR and again if `main` moves while your PR is open. Never rebase a branch someone else is working on. PRs are squash-merged (all the individual commits from a feature or topic branch into a single, brand-new commit on your target branch) into `main`, so history stays one commit per change.
-- **No direct pushes to `main`.**, unless you are changing something incredibly simple such as adding content to the readme or fixing a typo. Any other even mildly significant change goes through a PR.
+- **No direct pushes to `main`**, unless you are changing something incredibly simple such as adding content to the readme or fixing a typo. Any other even mildly significant change must go through a PR.
 
 ---
 
