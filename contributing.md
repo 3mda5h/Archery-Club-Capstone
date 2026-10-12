@@ -27,7 +27,7 @@ We will bring concerns to the Project Manager first. If a concern seems like add
 
 ### Setup
 
-- Clone the repository: `git clone https://github.com/3mda5h/Archery-Club-Capstone.git && git@github.com:3mda5h/Archery-Club-Capstone.git`
+- Clone the repository: `git clone https://github.com/3mda5h/Archery-Club-Capstone.git`
 - Install Dependencies: TODO install command
 - Copy the environment template: `cp .env.example .env`
 - Fill in `.env` with your local values
