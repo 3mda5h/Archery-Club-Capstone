@@ -14,7 +14,7 @@ We will bring concerns to the Project Manager first. If a concern seems like add
 
 List prerequisites, setup steps, environment variables/secrets handling, and how to run the app locally.
 
-###Prerequisites:
+### Prerequisites:
 - Git
 - TODO : runtime and version
 - TODO : package manager
