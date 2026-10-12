@@ -21,7 +21,7 @@ List prerequisites, setup steps, environment variables/secrets handling, and how
 - TODO : database (and how to run it locally)
 
 Setup:
-- Clone the repository: git clone https://github.com/3mda5h/Archery-Club-Capstone.git && git@github.com:3mda5h/Archery-Club-Capstone.git
+- Clone the repository: `git clone https://github.com/3mda5h/Archery-Club-Capstone.git` or `git clone git@github.com:3mda5h/Archery-Club-Capstone.git`
 - Install Dependencies: TODO install command
 - Copy the environment template: cp .env.example .env
 - Fill in .env with your local values
