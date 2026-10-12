@@ -57,9 +57,10 @@ Specify what must be updated (README, docs/, API refs, CHANGELOG) and docstring/
 ## Release Process
 
 Describe versioning scheme, tagging, changelog generation, packaging/publishing steps, and rollback process.
+- Versioning scheme: Semantic Versioning (MAJOR.MINOR.PATCH). We start at 0.x during development, then first club-wide rollout is 1.0.0.
 
 ## Support & Contact
-- The primary maintainer is 3mda5h
+- The primary long-term maintainer is 3mda5h
 - If you have questions about the code, open a Github discussion 
 - For bugs and feature requests, open an issue
 - If you have questions about the OSU Archery Club, contact us at archery@oregonstate.edu
