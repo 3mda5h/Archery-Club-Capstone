@@ -147,6 +147,7 @@ A change merges only when every check below passes.
 | All PR conversations resolved | Branch protection on `main` | TODO : confirm enabled. Target sprint: 1, owner: Quality owner) |
 | No secrets committed | CI secret scan job (TODO : tool) | Target sprint: 3, owner: Quality Owner |
 | No known vulnerable dependencies | CI dependency scan job (TODO : tool) | Target sprint: 3, owner: Quality Owner |
+| AI code review conducted | (TODO : tool) | Target sprint: 2, owner: Quality Owner |
 | Docs updated (README, `docs/`, `agents.md`, API reference, CHANGELOG) when behavior, setup, or architecture changes | PR template checklist, verified by the reviewer | Active now |
 | Author and reviewer have read and understand all of the code | PR template checklist | Active now |
 
