@@ -6,8 +6,6 @@ How to set up, code, test, review, and release so contributions meet our Definit
 
 ## Code of Conduct
 
-*Reference the project/community behavior expectations and reporting process.*
-
 We will follow the OSU Student Code of Conduct and the Inclusion Norms in our team charter. We assume good intent, critique code and the ideas rather than the person presenting them. We plan to have solutions be the main priority in our discussions.
 
 We will bring concerns to the Project Manager first. If a concern seems like additional input is needed from an outside source, then we contact the instructors directly to help resolve any issues.
@@ -15,8 +13,6 @@ We will bring concerns to the Project Manager first. If a concern seems like add
 ---
 
 ## Getting Started
-
-*List prerequisites, setup steps, environment variables/secrets handling, and how to run the app locally.*
 
 ### Prerequisites
 
@@ -52,7 +48,6 @@ We will bring concerns to the Project Manager first. If a concern seems like add
 
 ## Branching & Workflow
 
-*Describe the workflow (e.g., trunk-based or GitFlow), default branch, branch naming, and when to rebase vs. merge.*
 
 - **Model:** trunk-based development. `main` is the default branch, is protected, and must always be demo-ready
 - **Branch Names:** `initials/issue-number-short-description`. Example `em/22-fix-scoring-ui`
@@ -64,8 +59,6 @@ We will bring concerns to the Project Manager first. If a concern seems like add
 
 ## Issues & Planning
 
-*Explain how to file issues, required templates/labels, estimation, and triage/assignment practices.*
-
 - **Filing:** Anyone can file an issue using the repository templates (bug report, feature request, task). Every issue needs a clear description and acceptance criteria, so a teammate can tell when it is done.
 - **Labels:** One type label (`bug`, `feature`, `docs`, `chore`, `test`), plus as needed `blocked`, `good-first-issue`, and `needs-partner-input`.
 - **Estimation:** Sized as S (under half a day), M (about a day), or L (more than a day, which should usually be split). Estimates are agreed during sprint planning.
@@ -76,8 +69,6 @@ We will bring concerns to the Project Manager first. If a concern seems like add
 ---
 
 ## Commit Messages
-
-*State the convention (e.g., Conventional Commits), include examples, and how to reference issues.*
 
 We use Conventional Commits: `type(scope): short summary`.
 
@@ -107,8 +98,6 @@ Because we squash-merge, the PR title must also follow this formate
 
 ## Code Style, Linting & Formatting
 
-*Name the formatter/linter, config file locations, and the exact commands to check/fix locally.*
-
 - **Formatter:** TODO
 - **Config:** TODO path
 - **Check Locally:** TODO lint and format check command
@@ -121,8 +110,6 @@ Do not disable lint rules inline without a comment explaining why.
 ---
 
 ## Testing
-
-*Define required test types, how to run tests, expected coverage thresholds, and when new/updated tests are mandatory.*
 
 ### Required Test Types
 
@@ -149,8 +136,6 @@ Do not disable lint rules inline without a comment explaining why.
 
 ## Definition of Done
 
-*List the checks a change must pass before it merges (tests, review, docs updated, lint and security checks), each with the CI job, hook, or test that enforces it. For a gate not built yet, name the sprint it lands in and its owner.*
-
 A change merges only when every check below passes.
 
 | Check | Enforced by | Status |
@@ -171,8 +156,6 @@ The Quality Owner owns this table and keeps the status column current. Any check
 
 ## Contribution Norm
 
-*State the floor (every contributor lands at least one piece of accepted work per sprint), where each kind of work lives (the repository, the issue tracker, the partner's system), and what accepted means for each.*
-
 **The floor:** every contributor lands at least one piece of accepted work per sprint.
 
 **Where work lives and what "accepted" means:**
@@ -190,8 +173,6 @@ The Quality Owner owns this table and keeps the status column current. Any check
 ---
 
 ## Pull Requests & Reviews
-
-*Outline PR requirements (template, checklist, size limits), reviewer expectations, approval rules, and required status checks.*
 
 ### Opening a PR
 
@@ -215,8 +196,6 @@ The Quality Owner owns this table and keeps the status column current. Any check
 
 ## CI/CD
 
-*Link to pipeline definitions, list mandatory jobs, how to view logs/re-run jobs, and what must pass before merge/release.*
-
 - **Pipeline Definition:** TODO
 - **Mandatory Jobs:** lint, test, and build, plus the secret and dependency scans once they land.
 - **Viewing logs:** open the PR, go to the Checks tab, and select failing job.
@@ -230,8 +209,6 @@ The Quality Owner owns CI health. A broken `main` is fixed before any new featur
 
 ## Security & Secrets
 
-*State how to report vulnerabilities, prohibited patterns (hard-coded secrets), dependency update policy, and scanning tools.*
-
 - **Reporting Vulnerabilities:** Report them privately to the Quality Owner or the PM (dm in Discord), not in a public issue. Include steps to reproduce. We respond within 48 hours.
 - **Prohibited:** hard-coded credentials, API keys, tokens, connection strings, private keys, or personal information in code, commits, issues, longs, or test fixtures. If a secret is ever committed, treat it as leaked: rotate it immediately, tell the team, and then clean it from the history.
 - **Dependencies:** review dependency updates at least once per sprint (TODO Dependabot or equivalent). Security updates take priority.
@@ -241,8 +218,6 @@ The Quality Owner owns CI health. A broken `main` is fixed before any new featur
 ---
 
 ## Documentation Expectations
-
-*Specify what must be updated (README, docs/, API refs, CHANGELOG) and docstring/comment standards.*
 
 - **README:** a setup, run, and usage changes.
 - **`docs/`:** architecture notes and ADRs (e.g. `docs/adr/NNN-title.md`) for significant decision.
@@ -255,8 +230,6 @@ The Quality Owner owns CI health. A broken `main` is fixed before any new featur
 
 ## Release Process
 
-*Describe versioning scheme, tagging, changelog generation, packaging/publishing steps, and rollback process.*
-
 - **Versioning scheme:** Semantic Versioning (`MAJOR.MINOR.PATCH`). We start at 0.x during development, then first club-wide rollout is 1.0.0..
 - **Tagging:** the Quality Owner tag releases form main: `git tag vX.Y.Z && git push origin vX.Y.Z`.
 - **Changelog:** generated from Conventional Commit messages and reviewed by hand before release, then moved from "Unreleased" to the new version heading.
@@ -267,8 +240,6 @@ The Quality Owner owns CI health. A broken `main` is fixed before any new featur
 ---
 
 ## Support & Contact
-
-*Provide maintainer contact channel, expected response windows, and where to ask questions.*
 
 - The primary long-term maintainer is 3mda5h
 - If you have questions about the code, open a Github discussion
