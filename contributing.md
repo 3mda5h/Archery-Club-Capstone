@@ -140,18 +140,17 @@ A change merges only when every check below passes.
 
 | Check | Enforced by | Status |
 |---|---|---|
-| All tests pass | CI job `test` | TODO : confirm built (owner: Quality Owner) |
-| Lint and formatting are clean | Pre-commit hook and CI job `lint` | TODO : confirm built (owner: Quality Owner) |
-| Project builds successfully | CI job `build` | TODO : confirm built (owner: Quality Owner) |
-| At least one approval from someone other than the author | Branch protection on `main` | TODO : confirm enabled (owner: PM) |
+| All tests pass | CI job `test` | TODO : confirm built. Target sprint: 1 (owner: Quality Owner) |
+| Lint and formatting are clean | Pre-commit hook and CI job `lint` | TODO : confirm built. Target sprint: 2. (owner: Quality Owner) |
+| Project builds successfully | CI job `build` | TODO : confirm built. Target sprint: 1 (owner: Quality Owner) |
+| At least one approval from someone other than the author | Branch protection on `main` | TODO : confirm enabled. Target sprint: 1 (owner: PM) |
 | All PR conversations resolved | Branch protection on `main` | TODO : confirm enabled (owner: PM) |
 | No secrets committed | CI secret scan job (TODO : tool) | Lands in Sprint TODO, owner: Quality Owner |
 | No known vulnerable dependencies | CI dependency scan job (TODO : tool) | Lands in Sprint TODO, owner: Quality Owner |
 | Docs updated (README, `docs/`, `agents.md`, API reference, CHANGELOG) when behavior, setup, or architecture changes | PR template checklist, verified by the reviewer | Active now |
 | Author and reviewer have read and understand all of the code | PR template checklist | Active now |
 
-The Quality Owner owns this table and keeps the status column current. Any check that is not built yet must have a sprint number and an owner.
-
+The Quality Owner owns this table and keeps the status column current.
 ---
 
 ## Contribution Norm
