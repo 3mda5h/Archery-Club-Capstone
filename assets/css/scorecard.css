@@ -15,6 +15,7 @@ h1{
     font-size: 1.8rem;
 }
 
+/*submit button styling*/
 button{
     border: none;
     background-color: orangered;
@@ -62,12 +63,12 @@ input[type="number"] {
   text-align: center;
   font-size: 1.5rem;  
   aspect-ratio: 1 / 1; /*square shape*/
-  /* Remove spinner arrows — Chrome/Safari/Edge*/
+  /* Remove arrows in number box*/
   -webkit-appearance: none;
   -moz-appearance: textfield; 
 }
 
-/* Remove spinner arrows — Chrome/Safari/Edge*/
+/* Remove arrows in number box*/
 input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {
   -webkit-appearance: none;
