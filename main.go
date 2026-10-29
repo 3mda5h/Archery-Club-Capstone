@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"log"
 	"net/http"
 	"os"
@@ -10,11 +9,6 @@ import (
 func main() {
 	//"multiplexer" - go's router that checks the request URL and decides which handler should respond
 	mux := http.NewServeMux()
-
-	//for testing
-	mux.HandleFunc("/api/health", func(w http.ResponseWriter, r *http.Request) {
-		fmt.Fprintln(w, "ok")
-	})
 
 	port := os.Getenv("PORT") //read the port env variable that Vercel sets
 	if port == "" {           //if running locally, this env variable wont exist
