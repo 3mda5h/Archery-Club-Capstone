@@ -68,17 +68,7 @@ The design assumes scores cached in the browser survive reloads and dropped sign
 - **Mitigate:** spike on real phones at the range (`docs/design.md` lists this as an open question) and show an unsynced indicator.
 - **Trigger:** any lost scorecard reported at practice.
 
-### R-7 · team · M/M
-
-*Only some people have deployed; availability varies.*
-
-Only `<N>` team members have deployed the app, and Vercel's GitHub integration is not on, so no preview deploys exist yet. If the deployer is away, a bad release stays bad.
-
-- **Owner:** `<NAME>`
-- **Mitigate:** turn on the integration (`design.md` has a TODO), document deployment in `README.md`, and have a second person deploy.
-- **Trigger:** a release is due while the only deployer is away.
-
-### R-8 · business · L/M
+### R-7 · business · L/M
 
 *Not yet checked; the design already keeps real names out of public view.*
 
@@ -90,7 +80,7 @@ We don't know whether an OSU policy limits storing members' real names or sets h
 - **Start by:** `<DATE>`, before any real member data enters the database.
 - **Trigger:** no answer two weeks after asking, or real names entered before we have one.
 
-### R-9 · team · M/L
+### R-8 · team · M/L
 
 *README is Windows-only.*
 
