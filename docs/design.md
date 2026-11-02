@@ -199,7 +199,7 @@ erDiagram
                 enum bow
                 smallint final_score
                 smallint total_x }
-    end { bigint id PK
+    "end" { bigint id PK
           bigint scorecard_fk FK
           tinyint arrow_1_to_6 }
     member_league_avg { bigint id PK
