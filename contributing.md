@@ -23,11 +23,7 @@ We will bring concerns to the Project Manager first. If a concern seems like add
 
 ### Setup
 
-- Clone the repository: `git clone https://github.com/3mda5h/Archery-Club-Capstone.git`
-- Install Dependencies: TODO install command
-- Copy the environment template: `cp .env.example .env`
-- Fill in `.env` with your local values
-- Load seed data: TODO seed command, so you have a working demo
+- See README.md for instructions on local setup
 
 ### Environment variables and secrets
 
