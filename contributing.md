@@ -14,13 +14,6 @@ We will bring concerns to the Project Manager first. If a concern seems like add
 
 ## Getting Started
 
-### Prerequisites
-
-- Git
-- TODO : runtime and version
-- TODO : package manager
-- TODO : database (and how to run it locally)
-
 ### Setup
 
 - See README.md for instructions on local setup
