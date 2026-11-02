@@ -44,7 +44,7 @@ flowchart LR
     officer -- admin password: opens/closes submissions,<br/>sets the session code, manages members,<br/>events and teams, corrects scores --> sys
 ```
 
-No external services beyond hosting. There is no identity provider; access is
+No external services beyond hosting. There is no identity provider, access is
 controlled by shared codes (below).
 
 ### Containers (C4 level 2)
@@ -82,12 +82,13 @@ flowchart LR
 
 ### Access model *(planned)*
 
-Two shared secrets, no accounts. "Session code" is used here to avoid
+Three shared secrets (1 that rotates), no accounts. "Session code" is used here to avoid
 confusion with archery pins (`member_pin`).
 
 | Secret | Who has it | Unlocks | Protection |
 |---|---|---|---|
-| Session code | Members, told at practice | Submitting scorecards to an event an officer has opened | Checked server-side, IP rate-limited, accepted only while that event's submission window is open |
+| Join passphrase | Members, told at practice | Adding member name to scoring database | Checked server-side, IP rate-limited |
+| Session code | Members, told at practice, rotates with each event | Submitting scorecards to an event an officer has opened | Checked server-side, IP rate-limited, accepted only while that event's submission window is open |
 | Admin password | Officers only | The admin page and `/api/admin/*` | Checked server-side, IP rate-limited, changeable from the admin page |
 
 Both are stored hashed, never in the repository. Reading history, averages and
@@ -100,13 +101,13 @@ sequenceDiagram
     participant P as Member's phone
     participant API as Go server
     participant DB as Supabase
-    P->>P: enter ends; save scorecard to browser cache
+    P->>P: enter ends, save scorecard to browser cache
     P->>API: POST /api/scorecards (session code, submission_id, ends)
     API->>API: rate limit, window open?, code valid?, arrows valid?
     API->>DB: insert scorecard + ends in one transaction
     API-->>P: 201 Created
     P->>P: clear that scorecard from the cache
-    Note over P,API: On timeout or no signal the scorecard stays cached<br/>and is retried; the same submission_id is never stored twice.
+    Note over P,API: On timeout or no signal the scorecard stays cached<br/>and is retried, the same submission_id is never stored twice.
 ```
 
 ## Interfaces *(planned)*
