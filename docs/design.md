@@ -164,7 +164,7 @@ erDiagram
     preset ||--o{ tournament : "template for"
     event ||--o{ scorecard : "has"
     member ||--o{ scorecard : "shoots"
-    scorecard ||--o{ end : "has"
+    scorecard ||--o{ "end" : "has"
     league_comp ||--o{ league_team : "has"
     league_team ||--o{ league_team_member : "has"
     member ||--o{ league_team_member : "on"
