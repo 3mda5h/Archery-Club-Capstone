@@ -6,17 +6,7 @@ Rank is likelihood/impact (H/M/L) and why. Last reviewed: 11/1/26.
 
 ## Open risks (ranked)
 
-### R-1 · team · H/H
-
-*Checkpoint 1 requires it; nothing exists yet.*
-
-The repository has no CI workflow and no tests, and `contributing.md` lists the test, build, and lint jobs as TODO. Checkpoint 1 needs CI passing on the named commit, with at least one test that fails when the scaffold breaks. If CI is missing, or goes green without testing anything, the Build Health item fails.
-
-- **Owner:** `<QUALITY OWNER>`
-- **Mitigate:** add a workflow with build and test jobs on every pull request, include a Go test that checks something real about the scaffold, then break it on a branch once to confirm CI goes red.
-- **Trigger:** no green run, or no red run on the broken branch, by `<DATE>`.
-
-### R-2 · technical · M/H
+### R-1 · technical · M/H
 
 *A leaked code corrupts the leaderboard; serverless makes rate limiting harder (but still possible).*
 
@@ -26,7 +16,7 @@ Submissions rely on an event code, per-IP rate limiting, an open submission wind
 - **Mitigate:** keep rate-limit counters in the database, and run tests for wrong codes, expired codes, and lockout in CI.
 - **Trigger:** any score from a non-member, or the lockout test not passing by `<DATE>`.
 
-### R-3 · technical · M/H
+### R-2 · technical · M/H
 
 *A bad migration or deletion is unlikely but permanent.*
 
@@ -36,7 +26,7 @@ The free plan has no automatic backups. If a migration goes wrong or rows are de
 - **Mitigate:** take a manual or scheduled database export before each migration, and run one restore test before real data goes in. Moving to Pro adds daily backups (7 days, per Supabase's published plans).
 - **Trigger:** no tested restore by Checkpoint 2, or a migration merged without an export.
 
-### R-4 · business · M/H
+### R-3 · business · M/H
 
 *Untested; the objective depends on it.*
 
@@ -47,7 +37,7 @@ Future club officers will have little technical knowledge, and the admin page is
 - **Start by:** `<DATE>`, the last day to ask officers for trial time and still hold the first trial.
 - **Trigger:** no officer trial scheduled by `<DATE>`, or an officer can't finish a task in a trial.
 
-### R-5 · business · H/M
+### R-4 · business · H/M
 
 *The club will be idle between seasons; the cost is downtime, not lost data.*
 
@@ -57,7 +47,7 @@ Supabase pauses Free projects after about a week of low activity. The club may g
 - **Mitigate:** decide whether to move to Pro, which cannot be paused, or test a keep-alive during the spike; either way, make sure Supabase's warning emails go to an address the club monitors.
 - **Trigger:** a pause-warning email arrives, or no decision on Pro vs. free by `<DATE>`.
 
-### R-6 · team · H/M
+### R-5 · team · H/M
 
 *The brief lists many extras.*
 
@@ -68,7 +58,7 @@ Several Should and Could requirements (double scoring, team-making, pin achievem
 - **Trigger:** core flow not deployed by `<DATE>`.
 
 
-### R-7 · technical · M/M
+### R-6 · technical · M/M
 
 *Browser behavior on phones is unmeasured.*
 
@@ -78,7 +68,7 @@ The design assumes scores cached in the browser survive reloads and dropped sign
 - **Mitigate:** spike on real phones at the range (`docs/design.md` lists this as an open question) and show an unsynced indicator.
 - **Trigger:** any lost scorecard reported at practice.
 
-### R-8 · team · M/M
+### R-7 · team · M/M
 
 *Only some people have deployed; availability varies.*
 
@@ -88,7 +78,7 @@ Only `<N>` team members have deployed the app, and Vercel's GitHub integration i
 - **Mitigate:** turn on the integration (`design.md` has a TODO), document deployment in `README.md`, and have a second person deploy.
 - **Trigger:** a release is due while the only deployer is away.
 
-### R-9 · business · L/M
+### R-8 · business · L/M
 
 *Not yet checked; the design already keeps real names out of public view.*
 
@@ -100,7 +90,7 @@ We don't know whether an OSU policy limits storing members' real names or sets h
 - **Start by:** `<DATE>`, before any real member data enters the database.
 - **Trigger:** no answer two weeks after asking, or real names entered before we have one.
 
-### R-10 · team · M/L
+### R-9 · team · M/L
 
 *README is Windows-only.*
 
