@@ -237,10 +237,7 @@ on a phone, fills in the scorecard page, and the scorecard lands in the
 production database.
 
 - **Environments:** local (`go run .` serves `public/` at
-  `http://localhost:4000`) and production. Vercel's GitHub integration is not
-  on yet, so there are no preview deploys; until it is, changes are exercised
-  locally before they merge. Turning it on gives every pull request a preview
-  deploy, which becomes our staging environment. `TODO: owner and date`
+  `http://localhost:4000`) and production. Vercel's GitHub integration is active, so all PRs get a preview deploy
 - **Secrets:** database connection string and code hashes in Vercel environment
   variables; `.env.example` lists the names.
 - **Rollback:** promote the previous Vercel deployment. Schema migrations need
