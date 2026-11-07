@@ -68,6 +68,15 @@ input[type="number"] {
   -moz-appearance: textfield; 
 }
 
+input.invalid {
+    background-color: #ffd6d6;
+    outline: 2px solid red;
+}
+
+#submit-message {
+    color: red;
+}
+
 /* Remove arrows in number box*/
 input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {
