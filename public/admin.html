@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="robots" content="noindex, nofollow">
+        <link rel="stylesheet" href="/assets/css/scorecard.css">
+        <title>Officer login</title>
+        <style>
+            form { display: flex; flex-direction: column; gap: 0.5rem; width: min(20rem, 90vw); }
+            input { font-size: 1.3rem; padding: 0.5rem; }
+            #status { min-height: 1.5rem; text-align: center; margin: 1rem; }
+        </style>
+    </head>
+    <body>
+        <main>
+            <h1>Officer login</h1>
+
+            <form id="login-form" hidden>
+                <input id="password" type="password" autocomplete="current-password"
+                       placeholder="Admin password" aria-label="Admin password" required>
+                <button type="submit">Log in</button>
+            </form>
+
+            <section id="panel" hidden>
+                <p>You're logged in as an officer.</p>
+                <button id="logout" type="button">Log out</button>
+            </section>
+
+            <p id="status" role="status"></p>
+        </main>
+        <script>
+            const $ = (id) => document.getElementById(id);
+
+            function show(loggedIn) {
+                $("login-form").hidden = loggedIn;
+                $("panel").hidden = !loggedIn;
+            }
+
+            // Check whether the login cookie is still valid.
+            async function checkLogin() {
+                try {
+                    const res = await fetch("/api/admin/me");
+                    show(res.ok);
+                } catch {
+                    show(false);
+                    $("status").textContent = "Can't reach the server.";
+                }
+            }
+
+            $("login-form").addEventListener("submit", async (e) => {
+                e.preventDefault();
+                $("status").textContent = "";
+                try {
+                    const res = await fetch("/api/admin/login", {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({ password: $("password").value }),
+                    });
+                    $("password").value = "";
+                    if (res.ok) { show(true); return; }
+                    $("status").textContent = (await res.json()).error;
+                } catch {
+                    $("status").textContent = "No connection. Try again.";
+                }
+            });
+
+            $("logout").addEventListener("click", async () => {
+                await fetch("/api/admin/logout", { method: "POST" });
+                show(false);
+            });
+
+            checkLogin();
+        </script>
+    </body>
+</html>
