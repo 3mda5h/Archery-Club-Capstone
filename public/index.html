@@ -2,80 +2,83 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="viewport" content="width=device-width initial-scale=1.0">
         <script defer src="/assets/js/score.js"></script>
         <link rel="stylesheet" href="/assets/css/scorecard.css">
 
-        <title>Pins</title>
+        <title>Arrowscore</title>
     </head>
     <body>
         <main>
             <h1>Test Scorecard</h1>
+            <div><h3>Event code: </h3><input id="event-code" type="text" placeholder="Enter event code"></div>
             <table id="scorecard">
                 <tr>
                     <th id="end-header" class="end-label">End</th>
                     <th colspan="5">Arrows</th>
                 </tr>
                 <tr>
-                    <!-- inputmode="numeric" pattern="[0-9]*" make android and IOS open the number pad automatically-->
+                    <!-- inputmode="numeric"  make android and IOS open the number pad automatically-->
+                    <!-- step=1 makes browsers mark decimals as invalid -->
                     <th class="end-label">1</th>
-                    <td><input type="number" inputmode="numeric" pattern="[0-9]*"></input></td>
-                    <td><input type="number" inputmode="numeric" pattern="[0-9]*"></td>
-                    <td><input type="number" inputmode="numeric" pattern="[0-9]*"></td>
-                    <td><input type="number" inputmode="numeric" pattern="[0-9]*"></td>
-                    <td><input type="number" inputmode="numeric" pattern="[0-9]*"></td>
+                    <td><input type="number" inputmode="numeric"  min="0" max="10" step="1"></td>
+                    <td><input type="number" inputmode="numeric"  min="0" max="10" step="1"></td>
+                    <td><input type="number" inputmode="numeric"  min="0" max="10" step="1"></td>
+                    <td><input type="number" inputmode="numeric"  min="0" max="10" step="1"></td>
+                    <td><input type="number" inputmode="numeric"  min="0" max="10" step="1"></td>
                 </tr>
                 <tr>
                     <th class="end-label">2</th>
-                    <td><input type="number" inputmode="numeric" pattern="[0-9]*"></td>
-                    <td><input type="number" inputmode="numeric" pattern="[0-9]*"></td>
-                    <td><input type="number" inputmode="numeric" pattern="[0-9]*"></td>
-                    <td><input type="number" inputmode="numeric" pattern="[0-9]*"></td>
-                    <td><input type="number" inputmode="numeric" pattern="[0-9]*"></td>
+                    <td><input type="number" inputmode="numeric"  min="0" max="10" step="1"></td>
+                    <td><input type="number" inputmode="numeric"  min="0" max="10" step="1"></td>
+                    <td><input type="number" inputmode="numeric"  min="0" max="10" step="1"></td>
+                    <td><input type="number" inputmode="numeric"  min="0" max="10" step="1"></td>
+                    <td><input type="number" inputmode="numeric"  min="0" max="10" step="1"></td>
                 </tr>
                 <tr>
                     <th class="end-label">3</th>
-                    <td><input type="number" inputmode="numeric" pattern="[0-9]*"></td>
-                    <td><input type="number" inputmode="numeric" pattern="[0-9]*"></td>
-                    <td><input type="number" inputmode="numeric" pattern="[0-9]*"></td>
-                    <td><input type="number" inputmode="numeric" pattern="[0-9]*"></td>
-                    <td><input type="number" inputmode="numeric" pattern="[0-9]*"></td>
+                    <td><input type="number" inputmode="numeric"  min="0" max="10" step="1"></td>
+                    <td><input type="number" inputmode="numeric"  min="0" max="10" step="1"></td>
+                    <td><input type="number" inputmode="numeric"  min="0" max="10" step="1"></td>
+                    <td><input type="number" inputmode="numeric"  min="0" max="10" step="1"></td>
+                    <td><input type="number" inputmode="numeric"  min="0" max="10" step="1"></td>
                 </tr>
                 <tr>
                     <th class="end-label">4</th>
-                    <td><input type="number" inputmode="numeric" pattern="[0-9]*"></td>
-                    <td><input type="number" inputmode="numeric" pattern="[0-9]*"></td>
-                    <td><input type="number" inputmode="numeric" pattern="[0-9]*"></td>
-                    <td><input type="number" inputmode="numeric" pattern="[0-9]*"></td>
-                    <td><input type="number" inputmode="numeric" pattern="[0-9]*"></td>
+                    <td><input type="number" inputmode="numeric"  min="0" max="10" step="1"></td>
+                    <td><input type="number" inputmode="numeric"  min="0" max="10" step="1"></td>
+                    <td><input type="number" inputmode="numeric"  min="0" max="10" step="1"></td>
+                    <td><input type="number" inputmode="numeric"  min="0" max="10" step="1"></td>
+                    <td><input type="number" inputmode="numeric"  min="0" max="10" step="1"></td>
                 </tr>
                 <tr>
                     <th class="end-label">5</th>
-                    <td><input type="number" inputmode="numeric" pattern="[0-9]*"></td>
-                    <td><input type="number" inputmode="numeric" pattern="[0-9]*"></td>
-                    <td><input type="number" inputmode="numeric" pattern="[0-9]*"></td>
-                    <td><input type="number" inputmode="numeric" pattern="[0-9]*"></td>
-                    <td><input type="number" inputmode="numeric" pattern="[0-9]*"></td>
+                    <td><input type="number" inputmode="numeric"  min="0" max="10" step="1"></td>
+                    <td><input type="number" inputmode="numeric"  min="0" max="10" step="1"></td>
+                    <td><input type="number" inputmode="numeric"  min="0" max="10" step="1"></td>
+                    <td><input type="number" inputmode="numeric"  min="0" max="10" step="1"></td>
+                    <td><input type="number" inputmode="numeric"  min="0" max="10" step="1"></td>
                 </tr>
                 <tr>
                     <th class="end-label">6</th>
-                    <td><input type="number" inputmode="numeric" pattern="[0-9]*"></input></td>
-                    <td><input type="number" inputmode="numeric" pattern="[0-9]*"></td>
-                    <td><input type="number" inputmode="numeric" pattern="[0-9]*"></td>
-                    <td><input type="number" inputmode="numeric" pattern="[0-9]*"></td>
-                    <td><input type="number" inputmode="numeric" pattern="[0-9]*"></td>
+                    <td><input type="number" inputmode="numeric"  min="0" max="10" step="1"></input></td>
+                    <td><input type="number" inputmode="numeric"  min="0" max="10" step="1"></td>
+                    <td><input type="number" inputmode="numeric"  min="0" max="10" step="1"></td>
+                    <td><input type="number" inputmode="numeric"  min="0" max="10" step="1"></td>
+                    <td><input type="number" inputmode="numeric"  min="0" max="10" step="1"></td>
                 </tr>
-                <tr id="end-total-row">
+                <!-- <tr id="end-total-row">
                     <th colspan="4" id="end-total-label">End Total: </th>
                     <th colspan="2" id="end-total-value"></th>
-                </tr>
+                </tr> -->
                 <tr id="running-total-row">
                     <th colspan="4">Running Total: </th>
-                    <th colspan="2" id="running-total"></th>
+                    <th colspan="2" id="running-total-value"></th>
                 </tr>
             </table>
             
             <button id="submit-scorecard-button">Submit Scorecard</button>
+            <p id="submit-message"></p>
         </main>    
     </body>
 </html>
