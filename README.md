@@ -54,15 +54,16 @@ cd Archery-Club-Capstone
 
 ### 3\. Run the server
 
-From the repository root (the folder containing `main.go`):
+From the repository root (the folder containing `main.go`), download the dependencies once (needs internet), then start the server:
 
 ```powershell
+go mod tidy
 go run .
 ```
 
-The server prints nothing when it starts successfully; the cursor just sits there. That means it is running.
+The server prints `listening on http://localhost:4000` when it starts. If you haven't set up a `.env` file it also warns that admin login is disabled; see [docs/auth.md](docs/auth.md).
 
-The first time, **Windows Defender Firewall** may ask whether to allow the program to communicate on networks. For local development only, you can click **Cancel**; `localhost` still works. Click **Allow** for *Private networks* if you want to test from your phone (see [Testing on a phone](#testing-on-a-phone)).
+The first time, **Windows Defender Firewall** may ask whether to allow the program to communicate on networks. For local development only, you can click **Cancel**; `localhost` still works. 
 
 ### 4\. Open the app
 
@@ -79,12 +80,11 @@ That's it: you have a running system.
 |URL|Page|
 |-|-|
 |`http://localhost:4000/`|Test scorecard (`public/index.html`)|
-|`http://localhost:4000/scorecard.html`|Same scorecard (`public/scorecard.html`)|
+|`http://localhost:4000/admin.html`|Officer login (`public/admin.html`)|
 
-Locally, include the `.html` extension. The extensionless URLs (for example `/scorecard`) only work on Vercel, which applies `cleanUrls` from `vercel.json`.
+Locally, include the `.html` extension. 
 
 ### How the server decides what to serve
 
 `main.go` checks the `PORT` environment variable. Vercel sets it in production; on your machine it is normally unset, so the server listens on port **4000** and serves the `public/` folder. In production, Vercel serves `public/` itself.
 
-**The browser console shows a 404 for `/assets/js/score.js`.** Expected for now: the scorecard page references a script that hasn't been added to the repository yet. The page still loads.
