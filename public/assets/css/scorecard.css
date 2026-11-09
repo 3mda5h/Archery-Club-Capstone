@@ -79,6 +79,10 @@ input.invalid {
     color: red;
 }
 
+#submit-message.success {
+    color: green;
+}
+
 /* Remove arrows in number box*/
 input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {
