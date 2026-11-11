@@ -76,7 +76,7 @@ td {
     aspect-ratio: 1 / 1;
     box-sizing: border-box;
     margin: 0;
-    border: solid, 1px, gray;
+    border: solid 1px grey;
     border-radius: 5px;
     background: #fff;
     color: #000;
