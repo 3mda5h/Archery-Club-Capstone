@@ -28,7 +28,6 @@ button{
     border-radius: 10px;
     padding: 0.4rem;
     margin-top: 1rem;
-
 }
 
 /*scorecard table styling -------------------------------------------------------------------*/
@@ -38,13 +37,6 @@ table{
     font-size: 1.3rem;  
     margin: 0px;
 }
-
-table, tbody, td, th {
-    border: 1px;
-    border-color: white;
-    border-style: solid;
-}
-
 th{
  padding: 0.2rem;
  margin: 0px;
@@ -58,36 +50,12 @@ td {
   padding: 0px; 
 }
 
-input[type="number"] {
-  width: 100%;
-  min-width: 0;   /*overrides the browser default min-width */
-  box-sizing: border-box;   
-  text-align: center;
-  font-size: 1.5rem;  
-  aspect-ratio: 1 / 1; /*square shape*/
-  /* Remove arrows in number box*/
-  -webkit-appearance: none;
-  -moz-appearance: textfield; 
-}
-
-input.invalid {
-    background-color: #ffd6d6;
-    outline: 2px solid red;
-}
-
 #submit-message {
     color: red;
 }
 
 #submit-message.success {
     color: green;
-}
-
-/* Remove arrows in number box*/
-input[type="number"]::-webkit-inner-spin-button,
-input[type="number"]::-webkit-outer-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
 }
 
 .end-label{
@@ -101,3 +69,64 @@ input[type="number"]::-webkit-outer-spin-button {
 #running-total{
     font-size: 2rem;
 }
+
+/* scorecard cells (buttons) */
+.cell {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    box-sizing: border-box;
+    margin: 0;
+    border: solid, 1px, gray;
+    border-radius: 5px;
+    background: #fff;
+    color: #000;
+    font-family: inherit;
+    font-size: 1.5rem;
+    font-weight: 600;
+    touch-action: manipulation;   /* no double-tap zoom delay */
+}
+.cell.current {
+    outline: 5px solid #df5200;
+    outline-offset: -3px;
+}
+
+/* keypad */
+#keypad {
+    position: fixed;
+    left: 0; right: 0; bottom: 0;
+    max-width: 700px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 6px;
+    padding: 8px 8px calc(8px + env(safe-area-inset-bottom));
+    background: #fff;
+    box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.25);
+}
+#keypad[hidden] { display: none; }   /* needed: display:grid above would otherwise override [hidden] */
+
+.key {
+    height: 3.4rem;
+    border: none;
+    border-radius: 8px;
+    background: #eee;
+    color: #000;
+    font-family: inherit;
+    font-size: 1.6rem;
+    font-weight: 600;
+    touch-action: manipulation;
+    user-select: none;
+}
+.key:active { filter: brightness(0.85); }
+.key.wide { grid-column: 1 / -1; }
+
+/* leave room so the keypad never covers the submit button */
+main { padding-bottom: 17rem; }   /* tune to the real keypad height */
+
+/* ring colors: keypad only */
+.key[data-token="X"], .key[data-token="10"], .key[data-token="9"] { background: #ffd84d; }
+.key[data-token="8"],  .key[data-token="7"]                       { background: #ff7a7a; }
+.key[data-token="6"],  .key[data-token="5"]                       { background: #7ab8ff; }
+.key[data-token="4"],  .key[data-token="3"]                       { background: #333; color: #fff; }
+.key[data-token="2"],  .key[data-token="1"]                       { background: #fff; border: 2px solid #ccc; }
+.key[data-token="M"]                                              { background: #ccc; }
