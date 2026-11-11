@@ -47,7 +47,7 @@ td {
   width: 100%;
   min-width: 0; 
   margin: 0px;
-  padding: 0px; 
+  padding: 0.1rem; 
 }
 
 #submit-message {
