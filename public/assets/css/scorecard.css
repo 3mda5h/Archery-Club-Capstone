@@ -95,6 +95,7 @@ td {
     position: fixed;
     left: 0; right: 0; bottom: 0;
     max-width: 700px;
+    max-height: 30%;
     margin: 0 auto;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
