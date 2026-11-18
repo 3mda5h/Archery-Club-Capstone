@@ -1,22 +1,35 @@
 package main
 
 import (
+	"context"
+	"errors"
+	"io/fs"
 	"log"
 	"net/http"
 	"os"
-	
 	"time"
-	"errors"
-	"io/fs"
+
 	"github.com/joho/godotenv"
+
 	"github.com/3mda5h/Archery-Club-Capstone/internal/auth"
+	"github.com/3mda5h/Archery-Club-Capstone/internal/db"
 )
 
 func main() {
-	// Load variables from .env 
+	// Load variables from .env
 	if err := godotenv.Load(); err != nil && !errors.Is(err, fs.ErrNotExist) {
 		log.Printf("could not read .env: %v", err)
 	}
+
+	// Connect to the database. Stop right away if it fails, so a bad
+	// DATABASE_URL shows up at startup instead of when someone submits.
+	pool, err := db.Open(context.Background(), os.Getenv("DATABASE_URL"))
+	if err != nil {
+		log.Fatalf("database: %v", err)
+	}
+	defer pool.Close()
+	log.Println("connected to database")
+	_ = pool // TEMP: remove in Part 3 once the scorecard routes use pool
 
 	//"multiplexer" - go's router that checks the request URL and decides which handler should respond
 	mux := http.NewServeMux()
@@ -32,8 +45,8 @@ func main() {
 	authService := auth.New(auth.Config{
 		Store:             auth.NewMemoryStore(),
 		AdminPasswordHash: adminPasswordHash(),
-		TrustProxyHeaders: onVercel, 
-		SecureCookies:     onVercel, 
+		TrustProxyHeaders: onVercel,
+		SecureCookies:     onVercel,
 	})
 	authService.Routes(mux)
 
