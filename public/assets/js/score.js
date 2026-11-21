@@ -22,13 +22,11 @@ let scores = Array.from({ length: NUM_ENDS }, () => Array(ARROWS_PER_END).fill(n
 let current = { end: 0, arrow: 0 };
 const cells = []; // cells[end][arrow] -> the <button> element
 
-// ---- The ONE place tokens are converted to database values -------------
-// M is a miss (score 0). X is an inner ten (score 10 with the x flag set).
-function tokenToArrow(token) {
-    if (token === null) return null;               // blank stays null, distinct from a miss
-    if (token === 'M') return { score: 0, x: false };
-    if (token === 'X') return { score: 10, x: true };
-    return { score: parseInt(token, 10), x: false };
+// M is a miss (0). X is an inner ten (10); the X itself is only tracked as a count per end.
+function tokenToScore(token) {
+    if (token === null || token === 'M') return 0;
+    if (token === 'X') return 10;
+    return Number(token);
 }
 
 // ---- Build the table ---------------------------------------------------
@@ -77,7 +75,7 @@ function updateRunningTotal() {
     let total = 0;
     for (const end of scores) {
         for (const token of end) {
-            total += tokenToArrow(token)?.score ?? 0;
+            total += tokenToScore(token);
         }
     }
     running_total_value.textContent = total;
@@ -148,9 +146,11 @@ function loadDraft() {
 }
 
 // ---- Submit ------------------------------------------------------------
-//builds the 2D array of arrows: one inner array per end, one {score, x} (or null if blank) per arrow
 function collectEnds() {
-    return scores.map(end => end.map(tokenToArrow));
+    return scores.map(end => ({
+        arrows: end.map(tokenToScore),
+        total_x: end.filter(token => token === 'X').length,
+    }));
 }
 
 function showMessage(text, isSuccess) {
@@ -159,6 +159,10 @@ function showMessage(text, isSuccess) {
 }
 
 submit_button.addEventListener('click', async () => {
+    if (scores.flat().includes(null)) {
+    showMessage('Fill in every arrow before submitting.', false);
+    return;
+}
     const event_code = event_code_input.value.trim();
     if (event_code === '') {
         showMessage('Please enter the event code.', false);
