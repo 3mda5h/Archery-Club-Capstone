@@ -118,9 +118,11 @@ td {
     user-select: none;
 }
 .key:active { filter: brightness(0.85); }
-.key.wide { grid-column: span 3; }
+.key.wide { grid-column: span 2; }
 
-/* leave room so the keypad never covers the submit button */
+/*remove extra space when keypad is hidden*/
+body.keypad-hidden main { padding-bottom: 1rem; }
+/* when the keypad isnt hidden, leave room so the keypad never covers the submit button */
 main { padding-bottom: 17rem; }   /* tune to the real keypad height */
 
 /* ring colors: keypad only */

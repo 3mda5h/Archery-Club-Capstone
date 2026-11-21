@@ -22,6 +22,11 @@ let scores = Array.from({ length: NUM_ENDS }, () => Array(ARROWS_PER_END).fill(n
 let current = { end: 0, arrow: 0 };
 const cells = []; // cells[end][arrow] -> the <button> element
 
+function setKeypadVisible(is_visible) {
+    keypad.hidden = !is_visible;
+    document.body.classList.toggle('keypad-hidden', !is_visible);
+}
+
 // M is a miss (0). X is an inner ten (10); the X itself is only tracked as a count per end.
 function tokenToScore(token) {
     if (token === null || token === 'M') return 0;
@@ -105,6 +110,7 @@ function backspace() {
 table.addEventListener('click', (event) => {
     const cell = event.target.closest('button.cell');
     if (!cell) return;
+    setKeypadVisible(true);
     current = { end: Number(cell.dataset.end), arrow: Number(cell.dataset.arrow) };
     render();
 });
@@ -113,13 +119,13 @@ keypad.addEventListener('click', (event) => {
     const key = event.target.closest('button.key');
     if (!key) return;
     if (key.dataset.action === 'back') backspace();
+    else if (key.dataset.action === 'hide') setKeypadVisible(false);
     else enterToken(key.dataset.token);
 });
 
 // The event code is a normal text field, so the system keyboard opens for it.
 // Hide the keypad meanwhile so the two don't stack on top of each other.
-event_code_input.addEventListener('focus', () => { keypad.hidden = true; });
-event_code_input.addEventListener('blur', () => { keypad.hidden = false; });
+event_code_input.addEventListener('focus', () => setKeypadVisible(false));
 event_code_input.addEventListener('input', saveDraft);
 
 // ---- Draft caching (page reload / lost signal) -------------------------
