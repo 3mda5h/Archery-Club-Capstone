@@ -25,6 +25,12 @@ const cells = []; // cells[end][arrow] -> the <button> element
 function setKeypadVisible(is_visible) {
     keypad.hidden = !is_visible;
     document.body.classList.toggle('keypad-hidden', !is_visible);
+    updateKeypadHeight()
+}
+
+function updateKeypadHeight() {
+    // offsetHeight is 0 when the keypad is hidden, so scrolling ignores it automatically
+    document.documentElement.style.setProperty('--keypad-height', keypad.offsetHeight + 'px');
 }
 
 // M is a miss (0). X is an inner ten (10); the X itself is only tracked as a count per end.
@@ -208,4 +214,5 @@ submit_button.addEventListener('click', async () => {
 // ---- Startup -----------------------------------------------------------
 buildTable();
 loadDraft();
+updateKeypadHeight();
 render();
