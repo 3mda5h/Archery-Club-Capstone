@@ -97,8 +97,8 @@ td {
     max-width: 700px;
     margin: 0 auto;
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 6px;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 4px;
     padding: 8px 8px calc(8px + env(safe-area-inset-bottom));
     background: #fff;
     box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.25);
@@ -106,7 +106,7 @@ td {
 #keypad[hidden] { display: none; }   /* needed: display:grid above would otherwise override [hidden] */
 
 .key {
-    height: 3.4rem;
+    height: 3rem;
     border: none;
     border-radius: 8px;
     background: #eee;
@@ -118,7 +118,7 @@ td {
     user-select: none;
 }
 .key:active { filter: brightness(0.85); }
-.key.wide { grid-column: 1 / -1; }
+.key.wide { grid-column: span 3; }
 
 /* leave room so the keypad never covers the submit button */
 main { padding-bottom: 17rem; }   /* tune to the real keypad height */
