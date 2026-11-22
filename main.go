@@ -23,7 +23,10 @@ func main() {
 
 	// Connect to the database. Stop right away if it fails, so a bad
 	// DATABASE_URL shows up at startup instead of when someone submits.
-	pool, err := db.Open(context.Background(), os.Getenv("DATABASE_URL"))
+	// Give up after 10 seconds so startup can't hang forever.
+	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
+	pool, err := db.Open(ctx, os.Getenv("DATABASE_URL"))
+	cancel()
 	if err != nil {
 		log.Fatalf("database: %v", err)
 	}

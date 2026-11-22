@@ -16,7 +16,7 @@ func Open(ctx context.Context, url string) (*pgxpool.Pool, error) {
 	}
 	cfg, err := pgxpool.ParseConfig(url)
 	if err != nil {
-		return nil, fmt.Errorf("parse DATABASE_URL: %w", err)
+		return nil, fmt.Errorf("parse DATABASE_URL: invalid connection string")
 	}
 	// Supabase's connection pooler doesn't support named prepared
 	// statements, so use the simple protocol.

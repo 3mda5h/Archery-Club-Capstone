@@ -151,7 +151,7 @@ whoever builds both sides.
 
 ## Data
 
-Schema designed in drawSQL (export: `TODO path in repo`); not yet deployed.
+Schema designed in drawSQL (export: Archery-Club-Capstone/db/schema.sql); not yet deployed.
 The export is MySQL syntax; the first migration ports it to PostgreSQL
 (each `ENUM` becomes a Postgres enum type or a `CHECK` constraint, and
 `BIGINT UNSIGNED AUTO_INCREMENT` becomes `BIGINT GENERATED ALWAYS AS IDENTITY`).
@@ -242,7 +242,7 @@ production database.
   variables; `.env.example` lists the names.
 - **Rollback:** promote the previous Vercel deployment. Schema migrations need
   a tested down step before they merge, because a deploy rollback does not undo
-  a migration.
+  a migration. Migrations are run manually (Supabase SQL Editor or psql) in numeric order. Each NNN_name.sql has a matching NNN_name.down.sql that reverses it. To roll back, run the down files in reverse order.
 - **Known hosting risks** (tracked in [docs/risks.md](./risks.md)): Supabase's
   free tier pauses after a week of inactivity and has no automatic backups, and
   the club may go weeks between seasons without using the app.
