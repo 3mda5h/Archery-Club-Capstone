@@ -3,8 +3,8 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width initial-scale=1.0">
-        <script defer src="/assets/js/score.js"></script>
-        <link rel="stylesheet" href="/assets/css/scorecard.css">
+        <script defer src="assets/js/score.js"></script>
+        <link rel="stylesheet" href="assets/css/scorecard.css">
 
         <title>Arrowscore</title>
     </head>
@@ -16,56 +16,6 @@
                 <tr>
                     <th id="end-header" class="end-label">End</th>
                     <th colspan="5">Arrows</th>
-                </tr>
-                <tr>
-                    <!-- inputmode="numeric"  make android and IOS open the number pad automatically-->
-                    <!-- step=1 makes browsers mark decimals as invalid -->
-                    <th class="end-label">1</th>
-                    <td><input type="number" inputmode="numeric"  min="0" max="10" step="1"></td>
-                    <td><input type="number" inputmode="numeric"  min="0" max="10" step="1"></td>
-                    <td><input type="number" inputmode="numeric"  min="0" max="10" step="1"></td>
-                    <td><input type="number" inputmode="numeric"  min="0" max="10" step="1"></td>
-                    <td><input type="number" inputmode="numeric"  min="0" max="10" step="1"></td>
-                </tr>
-                <tr>
-                    <th class="end-label">2</th>
-                    <td><input type="number" inputmode="numeric"  min="0" max="10" step="1"></td>
-                    <td><input type="number" inputmode="numeric"  min="0" max="10" step="1"></td>
-                    <td><input type="number" inputmode="numeric"  min="0" max="10" step="1"></td>
-                    <td><input type="number" inputmode="numeric"  min="0" max="10" step="1"></td>
-                    <td><input type="number" inputmode="numeric"  min="0" max="10" step="1"></td>
-                </tr>
-                <tr>
-                    <th class="end-label">3</th>
-                    <td><input type="number" inputmode="numeric"  min="0" max="10" step="1"></td>
-                    <td><input type="number" inputmode="numeric"  min="0" max="10" step="1"></td>
-                    <td><input type="number" inputmode="numeric"  min="0" max="10" step="1"></td>
-                    <td><input type="number" inputmode="numeric"  min="0" max="10" step="1"></td>
-                    <td><input type="number" inputmode="numeric"  min="0" max="10" step="1"></td>
-                </tr>
-                <tr>
-                    <th class="end-label">4</th>
-                    <td><input type="number" inputmode="numeric"  min="0" max="10" step="1"></td>
-                    <td><input type="number" inputmode="numeric"  min="0" max="10" step="1"></td>
-                    <td><input type="number" inputmode="numeric"  min="0" max="10" step="1"></td>
-                    <td><input type="number" inputmode="numeric"  min="0" max="10" step="1"></td>
-                    <td><input type="number" inputmode="numeric"  min="0" max="10" step="1"></td>
-                </tr>
-                <tr>
-                    <th class="end-label">5</th>
-                    <td><input type="number" inputmode="numeric"  min="0" max="10" step="1"></td>
-                    <td><input type="number" inputmode="numeric"  min="0" max="10" step="1"></td>
-                    <td><input type="number" inputmode="numeric"  min="0" max="10" step="1"></td>
-                    <td><input type="number" inputmode="numeric"  min="0" max="10" step="1"></td>
-                    <td><input type="number" inputmode="numeric"  min="0" max="10" step="1"></td>
-                </tr>
-                <tr>
-                    <th class="end-label">6</th>
-                    <td><input type="number" inputmode="numeric"  min="0" max="10" step="1"></input></td>
-                    <td><input type="number" inputmode="numeric"  min="0" max="10" step="1"></td>
-                    <td><input type="number" inputmode="numeric"  min="0" max="10" step="1"></td>
-                    <td><input type="number" inputmode="numeric"  min="0" max="10" step="1"></td>
-                    <td><input type="number" inputmode="numeric"  min="0" max="10" step="1"></td>
                 </tr>
                 <!-- <tr id="end-total-row">
                     <th colspan="4" id="end-total-label">End Total: </th>
@@ -79,6 +29,33 @@
             
             <button id="submit-scorecard-button">Submit Scorecard</button>
             <p id="submit-message"></p>
+            <div id="keypad" role="group" aria-label="Score keypad">
+                <button type="button" class="key" data-token="M" aria-label="Miss">M</button>
+                <button type="button" class="key" data-token="1">1</button>
+                <button type="button" class="key" data-token="2">2</button>
+                <button type="button" class="key" data-token="3">3</button>
+                <button type="button" class="key" data-token="4">4</button>
+                <button type="button" class="key" data-token="5">5</button>
+                <button type="button" class="key" data-token="6">6</button>
+                <button type="button" class="key" data-token="7">7</button>
+                <button type="button" class="key" data-token="8">8</button>
+                <button type="button" class="key" data-token="9">9</button>
+                <button type="button" class="key" data-token="10">10</button>
+                <button type="button" class="key" data-token="X" aria-label="Inner ten">X</button>
+                <button type="button" class="key" data-action="hide" aria-label="Hide keypad">
+                    <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor"
+                        stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M6 9l6 6 6-6"/>
+                    </svg>
+                </button>
+                <button type="button" class="key wide" data-action="back" aria-label="Delete">
+                    <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor"
+                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M21 5H9l-6 7 6 7h12a1 1 0 0 0 1-1V6a1 1 0 0 0-1-1z"/>
+                        <path d="M17 9l-6 6M11 9l6 6"/>
+                    </svg>
+                </button>
+            </div>
         </main>    
     </body>
 </html>

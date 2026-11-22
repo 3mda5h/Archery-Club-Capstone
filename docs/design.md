@@ -138,7 +138,10 @@ whoever builds both sides.
   "bow": "recurve",
   "distance_yd": 20,
   "target_size_cm": 40,
-  "ends": [[10, 9, 9], [10, 10, 8]]
+  "ends": [
+    { "arrows": [1, 3, 7, 8, 10, 10], "total_x": 1 },
+    { "arrows": [3, 3, 8, 9, 10, 10], "total_x": 2 }
+  ]
 }
 ```
 
