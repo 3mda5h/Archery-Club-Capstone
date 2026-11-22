@@ -17,10 +17,10 @@ const TOTAL_ARROWS = NUM_ENDS * ARROWS_PER_END;
 const STORAGE_KEY = "arrowscore.draft";
 
 // ---- State -------------------------------------------------------------
-// scores[end][arrow] is null (not entered) or a token: "M", "1".."10", "X"
-let scores = Array.from({ length: NUM_ENDS }, () => Array(ARROWS_PER_END).fill(null));
-let current = { end: 0, arrow: 0 };
-const cells = []; // cells[end][arrow] -> the <button> element
+// scores tracks the score symbols (tokens): "M", "1".."10", and "X" 
+let scores = Array.from({ length: NUM_ENDS }, () => Array(ARROWS_PER_END).fill(null)); //creats a 2d array of all null
+let current = { end: 0, arrow: 0 }; //tuple, tracks current cell user is focused on
+const cells = []; // cells are the html <button> elements
 
 function setKeypadVisible(is_visible) {
     keypad.hidden = !is_visible;
@@ -28,19 +28,22 @@ function setKeypadVisible(is_visible) {
     updateKeypadHeight()
 }
 
+//allows for scolling correct distance when cell is clicked
 function updateKeypadHeight() {
     // offsetHeight is 0 when the keypad is hidden, so scrolling ignores it automatically
     document.documentElement.style.setProperty('--keypad-height', keypad.offsetHeight + 'px');
 }
 
-// M is a miss (0). X is an inner ten (10); the X itself is only tracked as a count per end.
+//convert a scoring symbol (token) to its actual numeric value
+// M is a miss, worth 0. X is an inner ten, worth 10. The X itself is only tracked as a 'total X' count per end
 function tokenToScore(token) {
     if (token === null || token === 'M') return 0;
     if (token === 'X') return 10;
     return Number(token);
 }
 
-// ---- Build the table ---------------------------------------------------
+// ---- Build the table ---------------------------------------------------\
+// dynamically builds HTML table with correct row and col nums
 function buildTable() {
     for (let e = 0; e < NUM_ENDS; e++) {
         const row = document.createElement('tr');
@@ -55,7 +58,7 @@ function buildTable() {
             const cell = document.createElement('button');
             cell.type = 'button';
             cell.className = 'cell';
-            cell.dataset.end = e;
+            cell.dataset.end = e; //dataset creates a data-* attribute for arbitrary info ignored by browser
             cell.dataset.arrow = a;
             td.append(cell);
             row.append(td);
@@ -66,14 +69,15 @@ function buildTable() {
 }
 
 // ---- Render (state -> DOM) ---------------------------------------------
+
+//display score tokens as the text of the html buttons
 function render() {
     for (let e = 0; e < NUM_ENDS; e++) {
         for (let a = 0; a < ARROWS_PER_END; a++) {
             const cell = cells[e][a];
             const token = scores[e][a];
-            cell.textContent = token ?? '';
-            cell.dataset.token = token ?? '';   // CSS colors the cell by ring from this
-            cell.classList.toggle('current', e === current.end && a === current.arrow);
+            cell.textContent = token ?? ''; //if score is null (nothing entered), display empty string
+            cell.classList.toggle('current', e === current.end && a === current.arrow); //adds or removed 'current' CSS class
             cell.setAttribute('aria-label',
                 `End ${e + 1}, arrow ${a + 1}: ${token ?? 'empty'}`);
         }
@@ -93,22 +97,27 @@ function updateRunningTotal() {
 }
 
 // ---- Cursor + input ----------------------------------------------------
+
+//counts cells left to right, top to bottom
+//makes cursor math easier
 function flatIndex() { return current.end * ARROWS_PER_END + current.arrow; }
-function setFlatIndex(i) {
-    i = Math.max(0, Math.min(TOTAL_ARROWS - 1, i));
-    current = { end: Math.floor(i / ARROWS_PER_END), arrow: i % ARROWS_PER_END };
+
+function moveCursorBy(step) {
+    const flat_index = current.end * ARROWS_PER_END + current.arrow + step; //Converts the cursor's two-part position (which end, which arrow) into a single number from 0 to # of arrows (ex 30), 
+    const clamped = Math.max(0, Math.min(TOTAL_ARROWS - 1, flat_index)); //converts 'flat' index to 2-part array index
+    current = { end: Math.floor(clamped / ARROWS_PER_END), arrow: clamped % ARROWS_PER_END };
 }
 
 function enterToken(token) {
     scores[current.end][current.arrow] = token;
-    setFlatIndex(flatIndex() + 1);   // auto-advance (stays put on the last cell)
+    moveCursorBy(1);   // auto-advance (stays put on the last cell)
     render();
-    cells[current.end][current.arrow].scrollIntoView({ block: 'nearest' });
+    cells[current.end][current.arrow].scrollIntoView({ block: 'nearest' }); //ensure auto-scrolling when auto-advancing to row beneath keyboard
 }
 
 function backspace() {
     // if the current cell has a value, clear it; otherwise step back and clear that one
-    if (scores[current.end][current.arrow] === null) setFlatIndex(flatIndex() - 1);
+    if (scores[current.end][current.arrow] === null) moveCursorBy(-1);
     scores[current.end][current.arrow] = null;
     render();
 }
@@ -173,9 +182,9 @@ function showMessage(text, isSuccess) {
 
 submit_button.addEventListener('click', async () => {
     if (scores.flat().includes(null)) {
-    showMessage('Fill in every arrow before submitting.', false);
-    return;
-}
+        showMessage('Fill in every arrow before submitting.', false);
+        return;
+    }
     const event_code = event_code_input.value.trim();
     if (event_code === '') {
         showMessage('Please enter the event code.', false);

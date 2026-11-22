@@ -89,7 +89,7 @@ td {
     font-weight: 600;
     touch-action: manipulation;   /* no double-tap zoom delay */
 }
-.cell.current {
+.cell.current { /*highlights currently focused cell*/
     outline: 5px solid #df5200;
     outline-offset: -3px;
 }
