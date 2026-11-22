@@ -119,6 +119,7 @@ table.addEventListener('click', (event) => {
     setKeypadVisible(true);
     current = { end: Number(cell.dataset.end), arrow: Number(cell.dataset.arrow) };
     render();
+    cell.scrollIntoView({ block: 'nearest' });
 });
 
 keypad.addEventListener('click', (event) => {
