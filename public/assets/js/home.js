@@ -31,8 +31,7 @@ function loadSavedMemberId(){
 
 async function loadMembers(){
     const response = await fetch(MEMBERS_URL);
-    if(response.status === 404) return PLACEHOLDER_MEMBERS; // endpoint not built yet
-    if(!response.ok) throw new Error("members request failed: " + response.status);
+    if(!response.ok) return PLACEHOLDER_MEMBERS
     return response.json();
 }
 
