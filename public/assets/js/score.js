@@ -3,7 +3,7 @@ const running_total_row = document.getElementById("running-total-row");
 const running_total_value = document.getElementById("running-total-value");
 const submit_button = document.getElementById("submit-scorecard-button");
 const submit_message = document.getElementById("submit-message");
-const event_code_input = document.getElementById("event-code");
+const scorecard_title = document.getElementById("scorecard-title");
 const keypad = document.getElementById("keypad");
 
 // The server handler must read these exact names from the JSON body (see docs/design.md)
@@ -15,12 +15,24 @@ const NUM_ENDS = 6;
 const ARROWS_PER_END = 5;
 const TOTAL_ARROWS = NUM_ENDS * ARROWS_PER_END;
 const STORAGE_KEY = "arrowscore.draft";
+const SESSION_KEY = "arrowscore.session";
 
 // ---- State -------------------------------------------------------------
 // scores tracks the score symbols (tokens): "M", "1".."10", and "X" 
 let scores = Array.from({ length: NUM_ENDS }, () => Array(ARROWS_PER_END).fill(null)); //creats a 2d array of all null
 let current = { end: 0, arrow: 0 }; //tuple, tracks current cell user is focused on
 const cells = []; // cells are the html <button> elements
+
+// The home page saves { member_id, user_name, event_code } before sending the user here
+// Returns null if nobody has joined yet
+function loadSession() {
+    try {
+        const saved = JSON.parse(localStorage.getItem(SESSION_KEY));
+        if (saved?.user_name && saved?.event_code) return saved;
+    } catch (e) { /* missing or corrupt: treat as not joined */ }
+    return null;
+}
+const session = loadSession();
 
 function setKeypadVisible(is_visible) {
     keypad.hidden = !is_visible;
@@ -139,16 +151,11 @@ keypad.addEventListener('click', (event) => {
     else enterToken(key.dataset.token);
 });
 
-// The event code is a normal text field, so the system keyboard opens for it.
-// Hide the keypad meanwhile so the two don't stack on top of each other.
-event_code_input.addEventListener('focus', () => setKeypadVisible(false));
-event_code_input.addEventListener('input', saveDraft);
-
 // ---- Draft caching (page reload / lost signal) -------------------------
 function saveDraft() {
     try {
         localStorage.setItem(STORAGE_KEY, JSON.stringify({
-            event_code: event_code_input.value, scores, current,
+            user_name: session.user_name, event_code: session.event_code, scores, current,
         }));
     } catch (e) { /* storage full or blocked (private mode): just skip caching */ }
 }
@@ -157,13 +164,14 @@ function loadDraft() {
     try {
         const draft = JSON.parse(localStorage.getItem(STORAGE_KEY));
         if (!draft) return;
+        // a draft saved for a different person or event isn't theirs, so start fresh
+if (draft.user_name !== session.user_name || draft.event_code !== session.event_code) return;
         // only trust the saved grid if its shape matches the current table
         if (draft.scores?.length === NUM_ENDS &&
             draft.scores.every(end => end.length === ARROWS_PER_END)) {
             scores = draft.scores;
             current = draft.current ?? current;
         }
-        event_code_input.value = draft.event_code ?? '';
     } catch (e) { /* corrupt draft: start fresh */ }
 }
 
@@ -185,14 +193,9 @@ submit_button.addEventListener('click', async () => {
         showMessage('Fill in every arrow before submitting.', false);
         return;
     }
-    const event_code = event_code_input.value.trim();
-    if (event_code === '') {
-        showMessage('Please enter the event code.', false);
-        return;
-    }
 
     const body = {
-        [FIELD_EVENT_CODE]: event_code,
+        [FIELD_EVENT_CODE]: session.event_code,
         [FIELD_ENDS]: collectEnds(),
     };
 
@@ -222,7 +225,14 @@ submit_button.addEventListener('click', async () => {
 });
 
 // ---- Startup -----------------------------------------------------------
-buildTable();
-loadDraft();
-updateKeypadHeight();
-render();
+if (session === null) {
+    location.replace("./"); // nobody has joined yet, so go to the home page
+} else {
+    const title = session.user_name + "'s scorecard";
+    scorecard_title.textContent = title;
+    document.title = title;
+    buildTable();
+    loadDraft();
+    updateKeypadHeight();
+    render();
+}
