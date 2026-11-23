@@ -2,60 +2,37 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width initial-scale=1.0">
-        <script defer src="assets/js/score.js"></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script defer src="assets/js/home.js"></script>
         <link rel="stylesheet" href="assets/css/scorecard.css">
+        <style>
+            main { padding-bottom: 1rem; }
+            form { display: flex; flex-direction: column; gap: 0.5rem; width: min(20rem, 90vw); }
+            label { font-size: 1.1rem; }
+            select, input { font-size: 1.3rem; padding: 0.5rem; }
+            #status { min-height: 1.5rem; text-align: center; margin: 1rem; color: red; }
+        </style>
 
         <title>Arrowscore</title>
     </head>
     <body>
         <main>
-            <h1>Test Scorecard</h1>
-            <div><p>Event code: </p><input id="event-code" type="text" placeholder="Enter event code"></div>
-            <table id="scorecard">
-                <tr>
-                    <th id="end-header" class="end-label">End</th>
-                    <th colspan="5">Arrows</th>
-                </tr>
-                <!-- <tr id="end-total-row">
-                    <th colspan="4" id="end-total-label">End Total: </th>
-                    <th colspan="2" id="end-total-value"></th>
-                </tr> -->
-                <tr id="running-total-row">
-                    <th colspan="4">Running Total: </th>
-                    <th colspan="2" id="running-total-value"></th>
-                </tr>
-            </table>
-            
-            <button id="submit-scorecard-button">Submit Scorecard</button>
-            <p id="submit-message"></p>
-            <div id="keypad" role="group" aria-label="Score keypad">
-                <button type="button" class="key" data-token="M" aria-label="Miss">M</button>
-                <button type="button" class="key" data-token="1">1</button>
-                <button type="button" class="key" data-token="2">2</button>
-                <button type="button" class="key" data-token="3">3</button>
-                <button type="button" class="key" data-token="4">4</button>
-                <button type="button" class="key" data-token="5">5</button>
-                <button type="button" class="key" data-token="6">6</button>
-                <button type="button" class="key" data-token="7">7</button>
-                <button type="button" class="key" data-token="8">8</button>
-                <button type="button" class="key" data-token="9">9</button>
-                <button type="button" class="key" data-token="10">10</button>
-                <button type="button" class="key" data-token="X" aria-label="Inner ten">X</button>
-                <button type="button" class="key" data-action="hide" aria-label="Hide keypad">
-                    <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor"
-                        stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                        <path d="M6 9l6 6 6-6"/>
-                    </svg>
-                </button>
-                <button type="button" class="key wide" data-action="back" aria-label="Delete">
-                    <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor"
-                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                        <path d="M21 5H9l-6 7 6 7h12a1 1 0 0 0 1-1V6a1 1 0 0 0-1-1z"/>
-                        <path d="M17 9l-6 6M11 9l6 6"/>
-                    </svg>
-                </button>
-            </div>
-        </main>    
+            <h1>Arrowscore</h1>
+
+            <form id="join-form">
+                <label for="member">Your name</label>
+                <select id="member" required disabled>
+                    <option value="">Loading names...</option>
+                </select>
+
+                <label for="event-code">Event code</label>
+                <input id="event-code" type="text" placeholder="Enter event code"
+                       autocomplete="off" autocapitalize="off" required>
+
+                <button type="submit">Join</button>
+            </form>
+
+            <p id="status" role="status"></p>
+        </main>
     </body>
 </html>
