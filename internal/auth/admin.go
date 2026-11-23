@@ -68,11 +68,6 @@ func (s *Service) handleAdminLogin(w http.ResponseWriter, r *http.Request) {
 	}
 	now := s.cfg.Now()
 	ip := clientIP(r, s.cfg.TrustProxyHeaders)
-	// Checked before the password, so attempt 6 fails even if it's right.
-	if s.adminIP.Blocked(ip, now) {
-		tooMany(w, s.adminIP.RetryAfter(), "Too many wrong passwords. Wait a few minutes and try again.")
-		return
-	}
 
 	var req struct {
 		Password string `json:"password"`
@@ -80,8 +75,16 @@ func (s *Service) handleAdminLogin(w http.ResponseWriter, r *http.Request) {
 	if !readJSON(w, r, &req) {
 		return
 	}
-	if bcrypt.CompareHashAndPassword(s.cfg.AdminPasswordHash, []byte(req.Password)) != nil {
-		s.adminIP.Fail(ip, now)
+
+	// Blocked IPs are refused before the password is checked, so attempt 6
+	// fails even if it's right.
+	switch s.adminIP.Attempt(ip, func() bool {
+		return bcrypt.CompareHashAndPassword(s.cfg.AdminPasswordHash, []byte(req.Password)) == nil
+	}) {
+	case attemptBlocked:
+		tooMany(w, s.adminIP.RetryAfter(), "Too many wrong passwords. Wait a few minutes and try again.")
+		return
+	case attemptFailed:
 		log.Printf("auth: wrong admin password from %s", ip)
 		writeError(w, http.StatusUnauthorized, "Wrong admin password.")
 		return

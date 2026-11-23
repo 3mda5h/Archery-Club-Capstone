@@ -85,7 +85,7 @@ func New(cfg Config) *Service {
 	return &Service{
 		cfg:     cfg,
 		store:   cfg.Store,
-		adminIP: newFailureLimiter(cfg.IPFailures, cfg.IPWindow),
+		adminIP: newFailureLimiter(cfg.IPFailures, cfg.IPWindow, cfg.Now),
 	}
 }
 
